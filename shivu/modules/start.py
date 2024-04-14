@@ -4,8 +4,10 @@ from html import escape
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext, CallbackQueryHandler, CommandHandler
 
-from shivu import application, PHOTO_URL, SUPPORT_CHAT, UPDATE_CHAT, BOT_USERNAME, db, GROUP_ID
+from shivu import application, SUPPORT_CHAT, UPDATE_CHAT, BOT_USERNAME, db, GROUP_ID
 from shivu import pm_users as collection 
+
+PHOTO_URL = "https://telegra.ph/file/6b2730e97e742b651cecc.jpg"
 
 
 async def start(update: Update, context: CallbackContext) -> None:
