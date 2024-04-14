@@ -175,8 +175,7 @@ async def guess(update: Update, context: CallbackContext) -> None:
     if sorted(name_parts) == sorted(guess.split()) or any(part == guess for part in name_parts):
         first_correct_guesses[chat_id] = user_id
 
-        # Add 60 coins to the user's wallet
-        await add_coins(int(user_id), 40)
+        
 
         user = await user_collection.find_one({'id': user_id})
         if user:
