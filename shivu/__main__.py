@@ -96,7 +96,7 @@ async def send_image(update: Update, context: CallbackContext) -> None:
     rarities = {
         1: '🟢 Common',
         2: '🟣 Rare',
-        3: '🟡 Legendary'
+        3: '🟡 Legendary',
         4: '🔮 Limited',
         5: '🫧 𝐏𝐫𝐞𝐦𝐢𝐮𝐦'
     }
