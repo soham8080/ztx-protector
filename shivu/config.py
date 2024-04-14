@@ -8,8 +8,8 @@ class Config(object):
     TOKEN = "7126535078:AAGCzeFY5MGDhhPtgupdv9HTixUSfraNgg8"
     mongo_url = "mongodb+srv://ztx:ztxwaifu@cluster0.dpny5vq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     PHOTO_URL = ["https://telegra.ph/file/a75e0d1a655943665b662.jpg", "https://telegra.ph/file/bee112f781897c3447515.jpg", "https://telegra.ph/file/a0123f958a26695bd9e14.jpg"]
-    SUPPORT_CHAT = "https://t.me/ZTX_BOTS"
-    UPDATE_CHAT = "https://t.me/ZTX_BOTS"
+    SUPPORT_CHAT = "ZTX_BOTS"
+    UPDATE_CHAT = "ZTX_BOTS"
     BOT_USERNAME = "Seal_Your_Waifu_Bot"
     CHARA_CHANNEL_ID = "-1002140753266"
     api_id = 22792918
