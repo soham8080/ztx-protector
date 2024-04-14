@@ -4,7 +4,7 @@ from html import escape
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext, CallbackQueryHandler, CommandHandler
 
-from shivu import application, PHOTO_URL, SUPPORT_CHAT, UPDATE_CHAT, BOT_USERNAME, db, GROUP_ID
+from shivu import application, SUPPORT_CHAT, UPDATE_CHAT, BOT_USERNAME, db, GROUP_ID, PHOTO_URL
 from shivu import pm_users as collection 
 
 
@@ -34,17 +34,21 @@ async def start(update: Update, context: CallbackContext) -> None:
         
         
         caption = f"""
-        ***Heyyyy...***
-
-***I am An Open Source Character Catcher Bot...​Add Me in Your group.. And I will send Random Characters After.. every 100 messages in Group... Use /guess to.. Collect that Characters in Your Collection.. and see Collection by using /Harem... So add in Your groups and Collect Your harem***
-        """
+        ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━⧫   
+  ✾ Wᴇʟᴄᴏᴍɪɴɢ ʏᴏᴜ ᴛᴏ ᴛʜᴇ Oᴛᴀᴋᴜ Cᴜʟᴛᴜʀᴇ   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━⧫
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━⧫
+┠ ➻  I ᴡɪʟʟ Sᴜᴍᴍᴏɴ Wᴀɪғᴜ Cʜᴀʀᴀᴄᴛᴇʀs Iɴ
+┃        ʏᴏᴜʀ Gʀᴏᴜᴘ Cʜᴀᴛ. 
+┠ ➻  Yᴏᴜ ᴄᴀɴ sᴇᴀʟ ᴛʜᴇᴍ ʙʏ /seal ᴄᴏᴍᴍᴀɴᴅ 
+┃         ᴀɴᴅ ᴀᴅᴅ ᴛᴏ ʏᴏᴜʀ ʜᴀʀᴇᴍ.
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━⧫
+  Tᴀᴘ ᴏɴ "Hᴇʟᴘ" ғᴏʀ ᴍᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅs."""
         
         keyboard = [
-            [InlineKeyboardButton("ADD ME", url=f'http://t.me/{BOT_USERNAME}?startgroup=new')],
-            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/{SUPPORT_CHAT}'),
-            InlineKeyboardButton("UPDATES", url=f'https://t.me/{UPDATE_CHAT}')],
-            [InlineKeyboardButton("HELP", callback_data='help')],
-            [InlineKeyboardButton("SOURCE", url=f'https://github.com/MyNameIsShekhar/WAIFU-HUSBANDO-CATCHER')]
+            [InlineKeyboardButton("➕ 𝖠𝖽𝖽 𝖬𝖾 I𝗇 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕", url=f'http://t.me/Seal_Your_Waifu_Bot?startgroup=new')],
+            [InlineKeyboardButton("𝖲𝗎𝗉𝗉𝗈𝗋𝗍 🍁", url=f'https://t.me/ZTX_BOTS'),
+            InlineKeyboardButton("𝖴𝗉𝖽𝖺𝗍𝖾𝗌 📈", url=f'https://t.me/ZTX_BOTS_UPDATES')],
+            [InlineKeyboardButton("𝖧𝖾𝗅𝗉 ⚙️", callback_data='help')]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         photo_url = random.choice(PHOTO_URL)
@@ -54,11 +58,10 @@ async def start(update: Update, context: CallbackContext) -> None:
     else:
         photo_url = random.choice(PHOTO_URL)
         keyboard = [
-            [InlineKeyboardButton("ADD ME", url=f'http://t.me/{BOT_USERNAME}?startgroup=new')],
-            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/{SUPPORT_CHAT}'),
-            InlineKeyboardButton("UPDATES", url=f'https://t.me/{UPDATE_CHAT}')],
-            [InlineKeyboardButton("HELP", callback_data='help')],
-            [InlineKeyboardButton("SOURCE", url=f'https://github.com/MyNameIsShekhar/WAIFU-HUSBANDO-CATCHER')]
+            [InlineKeyboardButton("➕ 𝖠𝖽𝖽 𝖬𝖾 I𝗇 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕", url=f'http://t.me/Seal_Your_Waifu_Bot?startgroup=new')],
+            [InlineKeyboardButton("𝖲𝗎𝗉𝗉𝗈𝗋𝗍 🍁", url=f'https://t.me/ZTX_BOTS'),
+            InlineKeyboardButton("𝖴𝗉𝖽𝖺𝗍𝖾𝗌 📈", url=f'https://t.me/ZTX_BOTS_UPDATES')],
+            [InlineKeyboardButton("𝖧𝖾𝗅𝗉 ⚙️", callback_data='help')]
         ]
         
         reply_markup = InlineKeyboardMarkup(keyboard)
@@ -97,11 +100,10 @@ async def button(update: Update, context: CallbackContext) -> None:
 
         
         keyboard = [
-            [InlineKeyboardButton("ADD ME", url=f'http://t.me/{BOT_USERNAME}?startgroup=new')],
-            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/{SUPPORT_CHAT}'),
-            InlineKeyboardButton("UPDATES", url=f'https://t.me/{UPDATE_CHAT}')],
-            [InlineKeyboardButton("HELP", callback_data='help')],
-            [InlineKeyboardButton("SOURCE", url=f'https://github.com/MyNameIsShekhar/WAIFU-HUSBANDO-CATCHER')]
+            [InlineKeyboardButton("➕ 𝖠𝖽𝖽 𝖬𝖾 I𝗇 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕", url=f'http://t.me/Seal_Your_Waifu_Bot?startgroup=new')],
+            [InlineKeyboardButton("𝖲𝗎𝗉𝗉𝗈𝗋𝗍 🍁", url=f'https://t.me/ZTX_BOTS'),
+            InlineKeyboardButton("𝖴𝗉𝖽𝖺𝗍𝖾𝗌 📈", url=f'https://t.me/ZTX_BOTS_UPDATES')],
+            [InlineKeyboardButton("𝖧𝖾𝗅𝗉 ⚙️", callback_data='help')]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 
