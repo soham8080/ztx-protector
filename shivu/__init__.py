@@ -33,4 +33,5 @@ OWNER_ID = Config.OWNER_ID
 
 application = Application.builder().token(TOKEN).build()
 shivuu = Client("Shivu", api_id, api_hash, bot_token=TOKEN)
-
+lol = AsyncIOMotorClient(mongo_url)
+db = lol['Character_catcher']
