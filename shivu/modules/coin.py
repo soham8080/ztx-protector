@@ -30,15 +30,6 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
-WRONG_FORMAT_TXT = """Wrong ❌ format...  eg. /uploaded Img_url muzan-kibutsuji Demon-slayer 3
-
-img_url character-name anime-name rarity-number
-
-use rarity number accordingly rarity Map
-
-rarity_map = 1 (💸 Premium Edition)"""
-
-
 
 async def check_balance(update: Update, context: CallbackContext) -> None:
     try:
@@ -47,9 +38,9 @@ async def check_balance(update: Update, context: CallbackContext) -> None:
 
         if user:
             coins = user.get("coins", 0)
-            await update.message.reply_text(f"𝐘𝐨𝐮𝐫 𝐜𝐮𝐫𝐫𝐞𝐧𝐭 𝐛𝐚𝐥𝐚𝐧𝐜𝐞 𝐢𝐬 :💸 {coins} coins")
+            await update.message.reply_text(f"🌟 Bᴇʜᴏʟᴅ, Yᴏᴜʀ Cᴜʀʀᴇɴᴛ Bᴀʟᴀɴᴄᴇ Sʜɪɴᴇs ➻💸 {coins} Cᴏɪɴs.")
         else:
-            await update.message.reply_text("You don't have any coins yet.")
+            await update.message.reply_text("Yᴏᴜ Dᴏɴ'ᴛ Hᴀᴠᴇ Aɴʏ Cᴏɪɴs Yᴇᴛ.")
     except Exception as e:
         await update.message.reply_text(f"Error occurred: {e}")
 
@@ -76,7 +67,7 @@ async def daily_reward(update: Update, context: CallbackContext) -> None:
         if user:
             last_claimed = user.get("last_daily_claimed")
             if last_claimed and last_claimed.date() == datetime.now().date():
-                await update.message.reply_text("You have already claimed your daily reward.")
+                await update.message.reply_text("Yᴏᴜ Hᴀᴠᴇ Aʟʀᴇᴀᴅʏ Cʟᴀɪᴍᴇᴅ Yᴏᴜʀ Dᴀɪʟʏ Rᴇᴡᴀʀᴅ.")
                 return
 
             await add_coins(user_id, 40)
@@ -84,10 +75,10 @@ async def daily_reward(update: Update, context: CallbackContext) -> None:
                 {"id": user_id},
                 {"$set": {"last_daily_claimed": datetime.now()}},
             )
-            await update.message.reply_text("You have claimed your daily reward. You earned 40 coins.")
+            await update.message.reply_text("Yᴏᴜ Hᴀᴠᴇ Cʟᴀɪᴍᴇᴅ Yᴏᴜʀ Dᴀɪʟʏ ʀᴇᴡᴀʀᴅ. Yᴏᴜ Eᴀʀɴᴇᴅ 𝟺𝟶 Cᴏɪɴs")
         else:
             await user_collection.insert_one({"id": user_id, "coins": 40, "last_daily_claimed": datetime.now()})
-            await update.message.reply_text("You have claimed your daily reward. You earned 40 coins.")
+            await update.message.reply_text("Yᴏᴜ Hᴀᴠᴇ Cʟᴀɪᴍᴇᴅ Yᴏᴜʀ Dᴀɪʟʏ ʀᴇᴡᴀʀᴅ. Yᴏᴜ Eᴀʀɴᴇᴅ 𝟺𝟶 Cᴏɪɴs.")
     except Exception as e:
         LOGGER.error(f"Error occurred: {e}")
         await update.message.reply_text(f"Error occurred: {e}")
@@ -103,7 +94,7 @@ async def weekly_reward(update: Update, context: CallbackContext) -> None:
             last_claimed = user.get("last_weekly_claimed")
             start_of_week = datetime.now().date() - timedelta(days=datetime.now().weekday())
             if last_claimed and last_claimed.date() >= start_of_week:
-                await update.message.reply_text("You have already claimed your weekly reward.")
+                await update.message.reply_text("Yᴏᴜ Hᴀᴠᴇ Aʟʀᴇᴀᴅʏ Cʟᴀɪᴍᴇᴅ Yᴏᴜʀ Wᴇᴇᴋʟʏ Rᴇᴡᴀʀᴅ.")
                 return
 
             await add_coins(user_id, 250)
@@ -111,10 +102,10 @@ async def weekly_reward(update: Update, context: CallbackContext) -> None:
                 {"id": user_id},
                 {"$set": {"last_weekly_claimed": datetime.now()}},
             )
-            await update.message.reply_text("You have claimed your weekly reward. You earned 250 coins.")
+            await update.message.reply_text("Yᴏᴜ Hᴀᴠᴇ Cʟᴀɪᴍᴇᴅ Yᴏᴜʀ Wᴇᴇᴋʟʏ Rᴇᴡᴀʀᴅ. Yᴏᴜ Eᴀʀɴᴇᴅ 𝟸𝟻𝟶 Cᴏɪɴs.")
         else:
             await user_collection.insert_one({"id": user_id, "coins": 250, "last_weekly_claimed": datetime.now()})
-            await update.message.reply_text("You have claimed your weekly reward. You earned 250 coins.")
+            await update.message.reply_text("Yᴏᴜ Hᴀᴠᴇ Cʟᴀɪᴍᴇᴅ Yᴏᴜʀ Wᴇᴇᴋʟʏ Rᴇᴡᴀʀᴅ. Yᴏᴜ Eᴀʀɴᴇᴅ 𝟸𝟻𝟶 Cᴏɪɴs.")
     except Exception as e:
         LOGGER.error(f"Error occurred: {e}")
         await update.message.reply_text(f"Error occurred: {e}")
@@ -130,7 +121,7 @@ async def top_users_by_coins(update: Update, context: CallbackContext) -> None:
         ])
         top_users_data = await cursor.to_list(length=10)
 
-        leaderboard_message = "<b>TOP 10 USERS WITH MOST COINS:</b>\n\n"
+        leaderboard_message = "<b>Dɪsᴄᴏᴠᴇʀ Tʜᴇ Eʟɪᴛᴇ Tᴏᴘ 𝟷𝟶 Usᴇʀs Rᴇᴡᴀʀᴅᴇᴅ Wɪᴛʜ Tʜᴇ Mᴏsᴛ Cᴏɪɴs:-</b>\n\n"
 
         for i, user_data in enumerate(top_users_data, start=1):
             user_id = user_data.get('id', 'Unknown')
@@ -140,7 +131,7 @@ async def top_users_by_coins(update: Update, context: CallbackContext) -> None:
                 user = await context.bot.get_chat(user_id)
                 username = user.username if user.username else user.first_name
                 display_name = user.title if user.title else user.first_name
-                leaderboard_message += f"{i}. <a href=\"https://t.me/{username}\">{display_name}</a>,\nBALANCE: 💸{coins} coins.\n\n"
+                leaderboard_message += f"{i}. <a href=\"https://t.me/{username}\">{display_name}</a>,\nBᴀʟᴀɴᴄᴇ➻💸{coins} coins.\n\n"
 
             except Exception as e:
                 LOGGER.error(f"Error getting user info: {e}")

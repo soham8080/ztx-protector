@@ -4,10 +4,10 @@ from html import escape
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext, CallbackQueryHandler, CommandHandler
 
-from shivu import application, SUPPORT_CHAT, UPDATE_CHAT, BOT_USERNAME, db, GROUP_ID
+from shivu import application, PHOTO_URL, SUPPORT_CHAT, UPDATE_CHAT, BOT_USERNAME, db, GROUP_ID
 from shivu import pm_users as collection 
 
-PHOTO_URL = "https://telegra.ph/file/a08c2dcdf3cf3f05f349e.mp4"
+
 async def start(update: Update, context: CallbackContext) -> None:
     user_id = update.effective_user.id
     first_name = update.effective_user.first_name
@@ -36,15 +36,15 @@ async def start(update: Update, context: CallbackContext) -> None:
         caption = f"""
         ***Heyyyy...***
 
-***I am An Open Source Character Catcher Bot...Add Me in Your group.. And I will send Random Characters After.. every 100 messages in Group... Use /guess to.. Collect that Characters in Your Collection.. and see Collection by using /Harem... So add in Your groups and Collect Your harem***
+***I am An Open Source Character Catcher Bot...​Add Me in Your group.. And I will send Random Characters After.. every 100 messages in Group... Use /guess to.. Collect that Characters in Your Collection.. and see Collection by using /Harem... So add in Your groups and Collect Your harem***
         """
         
         keyboard = [
             [InlineKeyboardButton("ADD ME", url=f'http://t.me/Fancy_Waifu_Husbando_Bot?startgroup=new')],
-            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/Blade_x_community'),
-            InlineKeyboardButton("UPDATES", url=f'https://t.me/Blade_x_support')],
+            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/Blade_x_support'),
+            InlineKeyboardButton("UPDATES", url=f'https://t.me/Blade_x_community')],
             [InlineKeyboardButton("HELP", callback_data='help')],
-            [InlineKeyboardButton("SOURCE", url=f'https://github.com/ishu9805')]
+            [InlineKeyboardButton("SOURCE", url=f'https://t.me/Blade_x_community')]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         photo_url = random.choice(PHOTO_URL)
@@ -52,17 +52,17 @@ async def start(update: Update, context: CallbackContext) -> None:
         await context.bot.send_photo(chat_id=update.effective_chat.id, photo=photo_url, caption=caption, reply_markup=reply_markup, parse_mode='markdown')
 
     else:
-        video_url = random.choice(PHOTO_URL)
+        photo_url = random.choice(PHOTO_URL)
         keyboard = [
             [InlineKeyboardButton("ADD ME", url=f'http://t.me/Fancy_Waifu_Husbando_Bot?startgroup=new')],
-            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/Blade_x_support'),
+            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/blade_x_support'),
             InlineKeyboardButton("UPDATES", url=f'https://t.me/Blade_x_community')],
             [InlineKeyboardButton("HELP", callback_data='help')],
-            [InlineKeyboardButton("SOURCE", url=f'https://t.me/alone_x_hater')]
+            [InlineKeyboardButton("SOURCE", url=f'https://t.me/Blade_x_community')]
         ]
         
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await context.bot.send_video(chat_id=update.effective_chat.id, video=video_url, caption="🎴Alive!?... \n connect to me in PM For more information ",reply_markup=reply_markup )
+        await context.bot.send_photo(chat_id=update.effective_chat.id, photo=photo_url, caption="🎴Alive!?... \n connect to me in PM For more information ",reply_markup=reply_markup )
 
 async def button(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
@@ -92,16 +92,16 @@ async def button(update: Update, context: CallbackContext) -> None:
         caption = f"""
         ***Hoyyyy...*** ✨
 
-***I am An Open Source Character Catcher Bot..Add Me in Your group.. And I will send Random Characters After.. every 100 messages in Group... Use /guess to.. Collect that Characters in Your Collection.. and see Collection by using /Harem... So add in Your groups and Collect Your harem***
+***I am An Open Source Character Catcher Bot..​Add Me in Your group.. And I will send Random Characters After.. every 100 messages in Group... Use /guess to.. Collect that Characters in Your Collection.. and see Collection by using /Harem... So add in Your groups and Collect Your harem***
         """
 
         
         keyboard = [
-            [InlineKeyboardButton("ADD ME", url=f'http://t.me/{BOT_USERNAME}?startgroup=new')],
-            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/Blade_x_support'),
+            [InlineKeyboardButton("ADD ME", url=f'http://t.me/Fancy_Waifu_Husbando_Bot?startgroup=new')],
+            [InlineKeyboardButton("SUPPORT", url=f'https://t.me/blade_x_support'),
             InlineKeyboardButton("UPDATES", url=f'https://t.me/Blade_x_community')],
             [InlineKeyboardButton("HELP", callback_data='help')],
-            [InlineKeyboardButton("SOURCE", url=f'https://github.com/ishu9805')]
+            [InlineKeyboardButton("SOURCE", url=f'https://t.me/Blade_x_community')]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
 

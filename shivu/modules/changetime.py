@@ -16,18 +16,18 @@ async def change_time(client: Client, message: Message):
         
 
     if member.status not in ADMINS :
-        await message.reply_text('You are not an Admin.')
+        await message.reply_text(" Wʜᴏᴏᴘs! Iᴛ Sᴇᴇᴍs Tʜɪs Aᴄᴛɪᴏɴ Is Rᴇsᴇʀᴠᴇᴅ Fᴏʀ Oᴜʀ Esᴛᴇᴇᴍᴇᴅ Aᴅᴍɪɴs. Lᴇᴛ's Cᴏɴᴛɪɴᴜᴇ Oᴜʀ Aᴅᴠᴇɴᴛᴜʀᴇ Tᴏɢᴇᴛʜᴇʀ!🚀")
         return
 
     try:
         args = message.command
         if len(args) != 2:
-            await message.reply_text('Please use: /changetime NUMBER')
+            await message.reply_text('Pʟᴇᴀsᴇ Usᴇ: /changetime Nᴜᴍʙᴇʀ')
             return
 
         new_frequency = int(args[1])
-        if new_frequency < 100:
-            await message.reply_text('The message frequency must be greater than or equal to 100.')
+        if new_frequency < 70:
+            await message.reply_text('Tʜᴇ Mᴇssᴀɢᴇ Fʀᴇǫᴜᴇɴᴄʏ Mᴜsᴛ Bᴇ Gʀᴇᴀᴛᴇʀ Tʜᴀɴ Oʀ Eǫᴜᴀʟ Tᴏ 𝟽𝟶.')
             return
 
     
