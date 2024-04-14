@@ -148,7 +148,7 @@ async def send_image(update: Update, context: CallbackContext) -> None:
     await context.bot.send_photo(
         chat_id=chat_id,
         photo=character['img_url'],
-        caption=f"""🎐 A {rarity_name} Wᴀɪғᴜ Hᴀs Aᴘᴘᴇᴀʀᴇᴅ ! Sᴇᴀʟ ʜᴇʀ ɪɴ ʏᴏᴜʀ ʜᴀʀᴇᴍ ʙʏ sᴇɴᴅɪɴɢ /seal [ ɴᴀᴍᴇ ]""",
+        caption=f"""A {rarity_name} Wᴀɪғᴜ Hᴀs Aᴘᴘᴇᴀʀᴇᴅ ! Sᴇᴀʟ ʜᴇʀ ɪɴ ʏᴏᴜʀ ʜᴀʀᴇᴍ ʙʏ sᴇɴᴅɪɴɢ /seal [ ɴᴀᴍᴇ ]""",
         parse_mode='Markdown')
 
 
@@ -242,7 +242,6 @@ async def guess(update: Update, context: CallbackContext) -> None:
         
         keyboard = [[InlineKeyboardButton(f"See Harem", switch_inline_query_current_chat=f"collection.{user_id}")]]
 
-        await update.message.reply_text("Cᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴs! Yᴏᴜ'ᴠᴇ Jᴜsᴛ Eᴀʀɴᴇᴅ Yᴏᴜʀsᴇʟғ 𝟼𝟶 Dᴀᴢᴢʟɪɴɢ Cᴏɪɴs Fᴏʀ Gᴜᴇssɪɴɢ Tʜᴇ Cʜᴀʀᴀᴄᴛᴇʀ Sᴘᴏᴛ-ᴏɴ!")
         await update.message.reply_text(f'<b><a href="tg://user?id={user_id}">{escape(update.effective_user.first_name)}</a></b> 🎉 Bʀᴀᴠᴏ! Yᴏᴜ\'ᴠᴇ Gᴜᴇssᴇᴅ A Nᴇᴡ Cʜᴀʀᴀᴄᴛᴇʀ \u2705️ \n\n🍁NAME🍁: <b>{last_characters[chat_id]["name"]}</b> \n⛩ANIME⛩: <b>{last_characters[chat_id]["anime"]}</b> \n🎐RARITY🎐: <b>{last_characters[chat_id]["rarity"]}</b>\n\nThis Character added in Your harem.. use /harem To see your harem', parse_mode='HTML', reply_markup=InlineKeyboardMarkup(keyboard))
 
 
