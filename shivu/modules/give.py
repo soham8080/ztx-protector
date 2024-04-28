@@ -104,7 +104,7 @@ async def delete_all_characters(update: Update, context: CallbackContext) -> Non
         await update.message.reply_text(f'An error occurred: {str(e)}')
 
 
-DELETE_ALL_CHARACTERS_HANDLER = CommandHandler('delallc', delete_all_characters, pass_args=True, block=False)
+DELETE_ALL_CHARACTERS_HANDLER = CommandHandler('delallc', delete_all_characters, block=False)
 application.add_handler(DELETE_ALL_CHARACTERS_HANDLER)
 
 
