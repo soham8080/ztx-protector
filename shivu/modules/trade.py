@@ -204,4 +204,78 @@ async def on_callback_query(client, callback_query):
 
         await callback_query.message.edit_text(f"You have successfully gifted your character to [{gift['receiver_first_name']}](tg://user?id={receiver_id})!")
 
+@shivuu.on_message(filters.command("giftall"))
+async def gift_all(client, message):
+    sender_id = message.from_user.id
 
+    if not message.reply_to_message:
+        await message.reply_text("You need to reply to a user's message to gift your entire collection!")
+        return
+
+    receiver_id = message.reply_to_message.from_user.id
+    receiver_username = message.reply_to_message.from_user.username
+    receiver_first_name = message.reply_to_message.from_user.first_name
+
+    if sender_id == receiver_id:
+        await message.reply_text("You can't gift your entire collection to yourself!")
+        return
+
+    sender = await user_collection.find_one({'id': sender_id})
+
+    if not sender['characters']:
+        await message.reply_text("You don't have any characters in your collection to gift!")
+        return
+
+    pending_gifts[(sender_id, receiver_id)] = {
+        'characters': sender['characters'],
+        'receiver_username': receiver_username,
+        'receiver_first_name': receiver_first_name
+    }
+
+    keyboard = InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("Confirm Gift All", callback_data="confirm_gift_all")],
+            [InlineKeyboardButton("Cancel Gift All", callback_data="cancel_gift_all")]
+        ]
+    )
+
+    await message.reply_text(f"Do you really want to gift your entire collection to {message.reply_to_message.from_user.mention}?", reply_markup=keyboard)
+
+
+@shivuu.on_callback_query(filters.create(lambda _, __, query: query.data in ["confirm_gift_all", "cancel_gift_all"]))
+async def on_callback_query(client, callback_query):
+    sender_id = callback_query.from_user.id
+
+    for (_sender_id, receiver_id), gift in pending_gifts.items():
+        if _sender_id == sender_id:
+            break
+    else:
+        await callback_query.answer("This is not for you!", show_alert=True)
+        return
+
+    if callback_query.data == "confirm_gift_all":
+        sender = await user_collection.find_one({'id': sender_id})
+        receiver_id = gift['receiver_id']
+
+        for character in gift['characters']:
+            sender['characters'].remove(character)
+            await user_collection.update_one({'id': sender_id}, {'$set': {'characters': sender['characters']}})
+
+            receiver = await user_collection.find_one({'id': receiver_id})
+            if receiver:
+                await user_collection.update_one({'id': receiver_id}, {'$push': {'characters': character}})
+            else:
+                await user_collection.insert_one({
+                    'id': receiver_id,
+                    'username': gift['receiver_username'],
+                    'first_name': gift['receiver_first_name'],
+                    'characters': [character],
+                })
+
+        del pending_gifts[(sender_id, receiver_id)]
+        await callback_query.message.edit_text(f"You have successfully gifted your entire collection to {callback_query.message.reply_to_message.from_user.mention}!")
+
+    elif callback_query.data == "cancel_gift_all":
+        del pending_gifts[(sender_id, receiver_id)]
+        await callback_query.message.edit_text("❌️ Sad Cancelled....")
+            
