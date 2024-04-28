@@ -77,6 +77,38 @@ async def give_all_characters(update: Update, context: CallbackContext) -> None:
         await update.message.reply_text(f'An error occurred: {str(e)}')
 
 
+
+
+async def delete_all_characters(update: Update, context: CallbackContext) -> None:
+    owner_id = "6257270528"  # Replace with the owner's ID
+    if str(update.effective_user.id) != owner_id:
+        await update.message.reply_text('Only the owner can use this command.')
+        return
+
+    try:
+        args = context.args
+        if len(args) != 1:
+            await update.message.reply_text('Incorrect format. Please use: /deleteallc user_id')
+            return
+
+        user_id = args[0]
+
+        # Update the user's character list to an empty array to delete all characters
+        await user_collection.update_one(
+            {'id': user_id},
+            {'$set': {'characters': []}}
+        )
+
+        await update.message.reply_text(f'All characters have been deleted from the collection of user with ID {user_id}.')
+    except Exception as e:
+        await update.message.reply_text(f'An error occurred: {str(e)}')
+
+
+DELETE_ALL_CHARACTERS_HANDLER = CommandHandler('delallc', delete_all_characters, pass_args=True, block=False)
+application.add_handler(DELETE_ALL_CHARACTERS_HANDLER)
+
+
+
 GIVE_ALL_CHARACTERS_HANDLER = CommandHandler('giveallc', give_all_characters, block=False)
 application.add_handler(GIVE_ALL_CHARACTERS_HANDLER)
 
