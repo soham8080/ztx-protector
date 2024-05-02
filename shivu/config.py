@@ -2,10 +2,10 @@ class Config(object):
     LOGGER = True
 
     # Get this value from my.telegram.org/apps
-    OWNER_ID = "6257270528"
+    OWNER_ID = "5595153270"
     sudo_users = "6257270528", "6321134824", "5595153270"
     GROUP_ID = -1002126989582
-    TOKEN = "7126535078:AAGCzeFY5MGDhhPtgupdv9HTixUSfraNgg8"
+    TOKEN = "6707312532:AAFHPdA12SuV0FZZ6vDEPA7IAvrrM5cMCEM"
     mongo_url = "mongodb+srv://ztx:ztxwaifu@cluster0.dpny5vq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     PHOTO_URL = ["https://telegra.ph/file/62531cee34e5c9f6599b4.jpg"]
     SUPPORT_CHAT = "Ɓ ʟ ᴀ ᴅ ᴇ メ ƈ ᴏ ᴍ ᴍ ᴜ ɴ ɪ ᴛ ʏ"
