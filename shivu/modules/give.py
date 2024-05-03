@@ -8,10 +8,10 @@ from telegram.ext import CommandHandler, CallbackContext, CallbackQueryHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 from shivu import collection, user_collection, application
-
+from shivu.config import OWNER_ID
 
 async def give_character_reply(update: Update, context: CallbackContext) -> None:
-    if str(update.effective_user.id) != "6257270528":  # Replace "6257270528" with the owner's ID
+    if str(update.effective_user.id) != "OWNER_ID":  # Replace "6257270528" with the owner's ID
         await update.message.reply_text('Only the owner can use this command.')
         return
 
