@@ -1,20 +1,18 @@
 
 
-
-
 FROM python:3.8.5-slim-buster
 
 ENV PIP_NO_CACHE_DIR 1
 
+# Fix apt sources
 RUN sed -i.bak 's/us-west-2\.ec2\.//' /etc/apt/sources.list
-
 
 # Upgrade pip and setuptools
 RUN pip3 install --upgrade pip setuptools
 
 # Copy local files to the container
-COPY . /root/ztx-prptector-
-WORKDIR /root/ztx-protector-
+COPY . /root/ztx-protector
+WORKDIR /root/ztx-protector
 
 # Install Python requirements
 RUN pip3 install -U -r requirements.txt
