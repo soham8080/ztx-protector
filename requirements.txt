@@ -1,6 +1,6 @@
 motor
 aiohttp
-requests
+requests==2.26.0
 python-telegram-bot==20.6
 pymongo 
 pyrate-limiter==3.1.0
